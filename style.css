@@ -635,7 +635,8 @@ a {
   .rect,
   .rect-left,
   .djevojka,
-  .desno {
+  .desno,
+  .lijevi-oblak2 {
     /*CSS transitions*/
     transition-property: none !important;
     /*CSS transforms*/
