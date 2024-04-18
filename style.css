@@ -175,35 +175,27 @@ POCETAK CONTAINER
   }
 }
 
-.features .wrapper ul li,
-h1,
-.pocetak-paragraf {
-  animation: fadeInUp 1s forwards;
-  opacity: 0;
+/* glavni naslov animacija */
+h1 {
+  animation: fadeInUp 1s;
 }
+
 .pocetak-paragraf {
-  animation-delay: 0.3s;
   text-align: left;
 }
 .mojedugme {
   animation-delay: 0.6s;
 }
-.features .wrapper ul li:nth-of-type(1) {
-  animation-delay: 0.5s;
-}
-.features .wrapper ul li:nth-of-type(2) {
-  animation-delay: 0.9s;
-}
-.features .wrapper ul li:nth-of-type(3) {
-  animation-delay: 1.2s;
-}
 
 @keyframes fadeInUp {
   from {
+    opacity: 0;
+    /* filter: blur(5px); */
     transform: translateY(30px);
   }
   to {
     opacity: 1;
+    /* filter: blur(0); */
     transform: translateY(0);
   }
 }
@@ -470,7 +462,7 @@ h3 {
 
 .uvodne-linije {
   display: flex;
-  /* outline: 1px dashed red; */
+
   width: 1300px;
   max-width: 80%;
   /* max-width: 100%; */
@@ -480,7 +472,6 @@ h3 {
   justify-content: center;
   align-items: center;
   margin-top: 20rem;
-  /* outline: 1px dashed darksalmon; */
   gap: 10px;
   overflow: hidden;
 }
@@ -518,12 +509,12 @@ h3 {
   max-width: 100%;
   width: 100px;
   opacity: 0;
-  margin-top: 200px;
+  transform: translateY(100%);
 }
 
 .imgshow {
   opacity: 1;
-  transform: translateY(-100px);
+  transform: translateY(0);
   transition: all 2s;
 }
 
@@ -634,13 +625,23 @@ a {
   .pojmadesno,
   .anim1,
   .anim2,
-  .glavni-naslov {
+  .glavni-naslov,
+  .imgshow,
+  .desni-oblak,
+  .lijevi-oblak,
+  .desno-srce,
+  .desno-srce2,
+  .desno-srce3,
+  .rect,
+  .rect-left,
+  .djevojka,
+  .desno {
     /*CSS transitions*/
     transition-property: none !important;
     /*CSS transforms*/
     transform: none !important;
     /*CSS animations*/
-    /* animation: none !important; */
+    animation: none !important;
   }
 
   .glavni-naslov {
@@ -720,14 +721,14 @@ h1 {
   opacity: 0;
   filter: blur(5px);
   transform: translateY(100%);
-  /* transition: all 1s; */
-  transition: transform 1s, filter 1s, opacity 1s;
 }
 
 .show {
   opacity: 1;
   filter: blur(0);
-  transform: translateY(-0%);
+  transform: translateY(0);
+  /* transition: all 1s; */
+  transition: opacity 1s, filter 1s, transform 1s;
 }
 
 .uvod-p {
@@ -920,6 +921,7 @@ footer {
   background-color: #af8cad;
   background-color: #9e81a8;
   background-color: #84617e;
+  margin-top: -10px;
   /* position: relative; */
 }
 
@@ -994,7 +996,7 @@ p.telefon {
 LIGHT/DARK MODE
 *******************************************************************************/
 
-.nav-button {
+.dark-light {
   position: absolute;
   display: flex;
   justify-content: flex-end;
@@ -1005,7 +1007,7 @@ LIGHT/DARK MODE
   transition: transform 0.6s ease;
 }
 
-.nav-button svg {
+.dark-light svg {
   width: 2.5rem;
 }
 
@@ -1128,7 +1130,6 @@ BRDA
 
 .glavni-naslov {
   color: #281f32;
-  transition: animation 2s ease, opacity 2s ease;
 }
 
 .glavni-naslov-light {
@@ -1257,7 +1258,7 @@ ACCENT
     width: 70%;
     margin: 10rem auto;
   }
-  .nav-button {
+  .dark-light {
     margin-top: 5%;
   }
 }
@@ -1282,41 +1283,6 @@ footer accent
     margin-bottom: 1rem;
   } */
 }
-
-/******************************************************************************
-accordion sekcija
-******************************************************************************/
-
-/* .accordion-sekcija {
-  height: 70vh;
-  background-color: #af8cad;
-  margin-top: 40rem;
-}
-
-.accordion-sekcija svg {
-  fill: #af8cad;
-  margin-top: -20rem;
-}
-
-.mapa {
-  /* padding-top: 60px; */
-/* background-color: #f6c8a2; */
-/* padding-bottom: 60px; */
-/* display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 20rem;
-  padding-right: 20rem;
-} */
-
-/* iframe {
-  vertical-align: bottom;
-  /* filter: grayscale(80%); */
-/* width: 98%; */
-/* outline: 1px solid blue; */
-/* border-radius: 10px;
-  box-shadow: var(--shadow);
-}   */
 
 /******************************************************************************
 Rijesenje problema prikaza elemenata na mobu sa novim Int.obs.
@@ -1345,7 +1311,12 @@ Rijesenje problema prikaza elemenata na mobu sa novim Int.obs.
   }
   .prva-ikona {
     opacity: 1;
-    transform: translateY(-100px);
+    transform: translateY(100%);
+  }
+  .imgshow {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 2s;
   }
   .line1,
   .line2 {
@@ -1357,49 +1328,10 @@ Rijesenje problema prikaza elemenata na mobu sa novim Int.obs.
 Nav button hover animacija
 ******************************************************************************/
 
-.nav-button:hover {
+.dark-light:hover {
   transform: scale(1.2, 1.2) rotate(30deg);
   transition: transform 0.2s ease;
 }
-
-/* #theme-button:hover {
-  transform: scale(1.2, 1.2) rotate(30deg);
-  transition: transform 0.2s ease;
-} */
-
-/******************************************************************************
-body background - odabir teme problem sa transition cekanjem
-******************************************************************************/
-
-body {
-  transition: background-color 2s ease;
-}
-
-/* mozes kao transition: all ili nesto specificno */
-/* .boja {
-  color: plum;
-  transition: 2s;
-} */
-
-/******************************************************************************
-Accessibility
-******************************************************************************/
-
-@media (prefers-color-scheme: light) {
-  .glavni-naslov {
-    outline: 1px dashed plum;
-  }
-}
-
-@media (prefers-contrast: more) {
-  .glavni-naslov {
-    outline: 1px dashed red;
-  }
-}
-
-/******************************************************************************
-Accessibility - tezi dio
-******************************************************************************/
 
 .veci_font {
   font-size: 12px;
@@ -1415,22 +1347,6 @@ Accessibility - tezi dio
 
 .size4 {
   font-size: 18px;
-}
-
-.spacing1 {
-  letter-spacing: 0.05rem;
-}
-
-.spacing2 {
-  letter-spacing: 0.1rem;
-}
-
-.spacing3 {
-  letter-spacing: 0.15rem;
-}
-
-.spacing4 {
-  letter-spacing: 0.2rem;
 }
 
 .typography1 {
@@ -1532,8 +1448,7 @@ Accessibility - tezi dio
   }
 }
 
-.a11y-button,
-.a11y-reset {
+.a11y-button {
   position: relative;
   margin-top: -1px;
   border: 1px solid #ccc;
@@ -1546,16 +1461,11 @@ Accessibility - tezi dio
 }
 
 @media (min-width: 768px) {
-  .a11y-button,
-  .a11y-reset {
+  .a11y-button {
     width: 50%;
     padding: 25px 15px;
     margin-left: -1px;
   }
-}
-
-.a11y-reset {
-  width: calc(100% - 1px);
 }
 
 .a11y-icon {
@@ -1568,139 +1478,6 @@ Accessibility - tezi dio
   .a11y-icon {
     width: 20px;
   }
-}
-
-.a11y-name {
-  display: block;
-  letter-spacing: normal !important;
-}
-
-.a11y-panel .steps {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  list-style: none;
-  margin-top: 10px;
-  margin-bottom: 0;
-  padding-left: 0;
-}
-
-@media (max-width: 767px) {
-  .a11y-panel .steps {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: auto;
-  }
-}
-
-.a11y-panel .steps li {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  height: 10px;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  background-color: #eee;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-@media (max-width: 767px) {
-  .a11y-panel .steps li {
-    width: 10px;
-  }
-}
-
-[data-selected="1"] .steps li:nth-child(1) {
-  background-color: #7d7e75;
-}
-
-[data-selected="2"] .steps li:nth-child(1) {
-  background-color: #7d7e75;
-}
-
-[data-selected="2"] .steps li:nth-child(2) {
-  background-color: #7d7e75;
-}
-
-[data-selected="3"] .steps li:nth-child(1) {
-  background-color: #7d7e75;
-}
-
-[data-selected="3"] .steps li:nth-child(2) {
-  background-color: #7d7e75;
-}
-
-[data-selected="3"] .steps li:nth-child(3) {
-  background-color: #7d7e75;
-}
-
-[data-selected="4"] .steps li:nth-child(1) {
-  background-color: #7d7e75;
-}
-
-[data-selected="4"] .steps li:nth-child(2) {
-  background-color: #7d7e75;
-}
-
-[data-selected="4"] .steps li:nth-child(3) {
-  background-color: #7d7e75;
-}
-
-[data-selected="4"] .steps li:nth-child(4) {
-  background-color: #7d7e75;
-}
-
-.full-width {
-  width: 100%;
-}
-
-#accessibility_contrast .a11y-name {
-  display: none;
-}
-
-#accessibility_contrast .a11y-name.kontrast {
-  display: block;
-}
-
-#accessibility_contrast[data-selected="1"] .a11y-name {
-  display: none !important;
-}
-
-#accessibility_contrast[data-selected="1"] .a11y-name:nth-child(2) {
-  display: block !important;
-}
-
-#accessibility_contrast[data-selected="2"] .a11y-name {
-  display: none !important;
-}
-
-#accessibility_contrast[data-selected="2"] .a11y-name:nth-child(3) {
-  display: block !important;
-}
-
-#accessibility_contrast[data-selected="3"] .a11y-name {
-  display: none !important;
-}
-
-#accessibility_contrast[data-selected="3"] .a11y-name:nth-child(4) {
-  display: block !important;
-}
-
-#accessibility_contrast[data-selected="4"] .a11y-name {
-  display: none !important;
-}
-
-#accessibility_contrast[data-selected="4"] .a11y-name:nth-child(5) {
-  display: block !important;
 }
 
 /******************************************************************
@@ -1723,3 +1500,7 @@ dislexic font za accessibility
   /* text-decoration: underline; */
   font-weight: bold;
 }
+
+/******************************************************************
+medi prefers light dark theme
+*******************************************************************/
